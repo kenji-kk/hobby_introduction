@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:index]
+  
   def index
+    @feed_items = current_user.feed.paginate(page: params[:page]) if logged_in?
   end
 
   def show
