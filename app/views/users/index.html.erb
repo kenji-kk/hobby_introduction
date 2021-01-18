@@ -2,6 +2,9 @@
  <% if logged_in? %>
    <h3>投稿タイムライン</h3>
     <%= render 'shared/feed' %>
+    <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
   <% else %>
   <h1>ようこそ趣味紹介サイトへ</h1>
   <p1>まずはログインしてください</p1>
