@@ -29,6 +29,10 @@ class UsersController < ApplicationController
   
   end
   
+  def manyusers
+    @users = User.paginate(page: params[:page])
+  end
+  
  private
 
    def user_params
