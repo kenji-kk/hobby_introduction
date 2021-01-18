@@ -1,4 +1,9 @@
 <div class="col-md-8">
-  <h3>投稿タイムライン</h3>
-  <%= render 'shared/feed' %>
+ <% if logged_in? %>
+   <h3>投稿タイムライン</h3>
+    <%= render 'shared/feed' %>
+  <% else %>
+  <h1>ようこそ趣味紹介サイトへ</h1>
+  <p1>まずはログインしてください</p1>
+<% end %>
 </div>
