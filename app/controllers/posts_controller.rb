@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = "投稿成功!"
-      redirect_to new_user_path
+      redirect_to root_path
     else
       render 'posts/new'
     end

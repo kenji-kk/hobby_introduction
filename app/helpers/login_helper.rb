@@ -45,6 +45,10 @@ module LoginHelper
       end
    end
    
+   def current_user?(user)
+    user && user == current_user
+   end
+   
    def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless @user == current_user
