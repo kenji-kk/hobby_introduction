@@ -2,6 +2,12 @@ class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
   before_action :correct_user,   only: :destroy
 
+  def show
+    @post = Post.find(params[:id])
+    @board = @post.bulletin_boards.build
+    @manyposts = @post.bulletin_boards.all
+  end 
+  
   def new
     @post = current_user.posts.build if logged_in?
   end 
