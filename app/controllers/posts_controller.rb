@@ -4,7 +4,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @board = Bulletin_board.new
+    @board = @post.bulletin_boards.build
+    @manyposts = @post.bulletin_boards.all
   end 
   
   def new

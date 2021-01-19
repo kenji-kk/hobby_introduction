@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   end
   resources :posts,          only: [:new, :show, :create, :destroy]
   resources :relationships,       only: [:create, :destroy]
+  resources :bulletin_boards,     only: [:create]
 end

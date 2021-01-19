@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :bulletin_boards, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   validates :genre, presence: true
   validates :title, presence: true

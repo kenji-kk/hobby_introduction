@@ -2,16 +2,17 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: @board, local: true) do |f| %>
      
-      <%= hidden_field_tag :name, @current_user.name %>
+      <%= f.hidden_field :name, :value => current_user.name %>
+      
+      <%= hidden_field_tag :id, @post.id %>
 
       <%= f.label :content %>
-      <%= f.email_field :content %>
+      <%= f.text_field :content %>
 
       <%= f.submit "投稿", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
-<li id="micropost-<%= @post.id %>">
   <div><span class="user">名前 <%= link_to @post.user.name, @post.user %></span></div>
   <div><span class="content">ジャンル <%= @post.genre %></span></div>
   <div><span class="content">タイトル <%= @post.title %></span></div>
@@ -19,5 +20,13 @@
   <div><span class="timestamp">
     Posted <%= time_ago_in_words(@post.created_at) %> ago.
   </span></div>
-</li>
 
+<% if @manyposts.any? %>
+<ul class="users">
+  <% @manyposts.each do |manypost| %>
+      <p>【名前】:<%= manypost.name %> <br>【コメント】:<%= manypost.content %></p>
+    <hr>
+    <hr>
+  <% end %>
+</ul>
+<% end %>
