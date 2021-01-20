@@ -1,10 +1,17 @@
 <div class="col-md-8">
  <% if logged_in? %>
-   <h3>投稿タイムライン</h3>
-    <%= render 'shared/feed' %>
-    <section class="stats">
+   <section class="stats">
         <%= render 'shared/stats' %>
-      </section>
+   </section>
+   <h3>投稿タイムライン</h3>
+    <%= form_with(url: root_path, method: :get, scope: :search, local: true) do |f| %>
+
+      <%= f.label :genre,"ジャンル検索で絞り込む" %>
+      <%= f.text_field :genre, class: 'form-control' %>
+
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
+    <%= render 'shared/feed' %>
   <% else %>
   <h1>ようこそ趣味紹介サイトへ</h1>
   <p1>まずはログインしてください</p1>

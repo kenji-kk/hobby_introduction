@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
-   before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
+   before_action :logged_in_user, only: [:edit, :update, :destroy,
                                         :following, :followers]
   before_action :correct_user,   only: [:edit, :update]
   
   def index
-    @feed_items = current_user.feed.paginate(page: params[:page]) if logged_in?
+    if params[:search] && params[:search][:genre]
+      @feed_items = current_user.search(params[:search][:genre]).paginate(page: params[:page]) if logged_in?
+    else
+      @feed_items = current_user.feed.paginate(page: params[:page]) if logged_in?
+    end
   end
 
   def show
