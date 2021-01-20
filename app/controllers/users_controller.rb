@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   
   def index
-    @feed_items = current_user.feed.paginate(page: params[:page]) if logged_in?
+    if request.post? then
+      @feed_items = current_user.feedd(params[:search][:genre]).paginate(page: params[:page])  if logged_in?
+    else
+      @feed_items = current_user.feed.paginate(page: params[:page]) if logged_in?
+    end
   end
 
   def show

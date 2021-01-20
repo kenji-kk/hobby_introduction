@@ -49,6 +49,10 @@ class User < ApplicationRecord
                      OR user_id = :user_id", user_id: id)
   end
   
+  def feedd(genres)
+    Post.find_by(genre: "#{genres}" )
+  end 
+  
   def follow(other_user)
     following << other_user
   end
